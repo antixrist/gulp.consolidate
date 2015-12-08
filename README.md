@@ -4,27 +4,37 @@
 
 ## Usage
 
-First, install `gulp-consolidate` as a development dependency:
+Install `gulp-consolidate` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-consolidate
+npm install --save-dev gulp.consolidate
 ```
 
-Then, add it to your `gulpfile.js`:
+Then, add it to your `gulpfile.js` (compatible with `gulp-data`):
 
 ```javascript
-var consolidate = require("gulp-consolidate");
+var gulpConsolidate = require("gulp.consolidate");
 
-gulp.src("./src/*.html", { read : false})
-	.pipe(consolidate("swig", {
+var getJsonData = function(file) {
+  return require('./examples/' + path.basename(file.path) + '.json');
+};
+
+gulp.src('./src/*.html')
+	.pipe(gulpData(getJsonData))
+	.pipe(gulpConsolidate("swig", {
 		msg: "Hello Gulp!"
+	}, {
+		setupEngine: function (engineName, Engine) {
+			return Engine;
+		}
+		//useContents: true
 	}))
-	.pipe(gulp.dest("./dist"));
+	.pipe(gulp.dest('./dist'));
 ```
 
 ## API
 
-### consolidate(engine, data[, options])
+### consolidate(engine[, data][, options])
 
 #### engine
 Type: `String`
@@ -43,23 +53,13 @@ npm install --save-dev swig
 ```
 
 #### data
-Type: `Object|Function`
+Type: `Object`
 
 The data to use to render the templates.
 
 ```js
 consolidate('swig', {
 	msg: "Hello World"
-});
-```
-
-If this argument is a function, it will be called with the file as the only argument to get the template data.
-
-```js
-consolidate('swig', function (file) {
-	return {
-		BASE_URL : path.relative(file.path, pathToBase)
-	};
 });
 ```
 
@@ -84,16 +84,4 @@ If you would rather pass the file contents to consolidate, set the `useContents`
 
 ## License
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
-[consolidate-url]: https://github.com/visionmedia/consolidate.js
-[gulp-url]: https://github.com/gulpjs/gulp
-
-[npm-url]: https://npmjs.org/package/gulp-consolidate
-[npm-image]: https://badge.fury.io/js/gulp-consolidate.png
-
-[travis-url]: http://travis-ci.org/timrwood/gulp-consolidate
-[travis-image]: https://secure.travis-ci.org/timrwood/gulp-consolidate.png?branch=master
-
-[depstat-url]: https://david-dm.org/timrwood/gulp-consolidate
-[depstat-image]: https://david-dm.org/timrwood/gulp-consolidate.png
+WTFPL License
