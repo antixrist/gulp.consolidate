@@ -11,7 +11,8 @@ npm install --save-dev gulp.consolidate
 Then, add it to your `gulpfile.js` (compatible with `gulp-data`):
 
 ```javascript
-var gulpConsolidate = require("gulp.consolidate");
+var gulpData = require('gulp-data');
+var gulpConsolidate = require('gulp.consolidate');
 
 var getJsonData = function(file) {
   return require('./examples/' + path.basename(file.path) + '.json');
@@ -19,8 +20,8 @@ var getJsonData = function(file) {
 
 gulp.src('./src/*.html')
 	.pipe(gulpData(getJsonData))
-	.pipe(gulpConsolidate("swig", {
-		msg: "Hello Gulp!"
+	.pipe(gulpConsolidate('swig', {
+		msg: 'Hello Gulp!'
 	}, {
 		setupEngine: function (engineName, Engine) {
 			return Engine;
