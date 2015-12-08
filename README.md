@@ -1,6 +1,4 @@
-# [gulp][gulp-url]-consolidate [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
-
-> Template engine consolidation for [gulp][gulp-url] using [consolidate.js][consolidate-url].
+Template engine consolidation for `gulp` using `consolidate.js`.
 
 ## Usage
 
@@ -34,12 +32,12 @@ gulp.src('./src/*.html')
 
 ## API
 
-### consolidate(engine[, data][, options])
+### gulpConsolidate(engine[, data][, options])
 
 #### engine
 Type: `String`
 
-The [consolidate.js][consolidate-url] supported template engine used to render each file.
+The `consolidate.js` supported template engine used to render each file.
 
 
 ```js
