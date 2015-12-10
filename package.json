@@ -33,5 +33,11 @@
     {
       "type": "WTFPL"
     }
-  ]
+  ],
+  "devDependencies": {
+    "bluebird": "^3.0.6",
+    "consolidate": "^0.13.1",
+    "extend": "^3.0.0",
+    "through2": "^2.0.0"
+  }
 }
